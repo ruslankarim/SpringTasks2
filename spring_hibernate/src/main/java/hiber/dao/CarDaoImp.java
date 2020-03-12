@@ -17,17 +17,21 @@ public class CarDaoImp implements CarDao{
     @Override
     public void add(Car car) {
         sessionFactory.getCurrentSession().save(car);
+        sessionFactory.close();
     }
 
     @Override
     public Car getCarById(Long id) {
-        return sessionFactory.getCurrentSession().get(Car.class, id);
+        Car car = sessionFactory.getCurrentSession().get(Car.class, id);
+        sessionFactory.close();
+        return car;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Car> listCars() {
         TypedQuery<Car> query=sessionFactory.getCurrentSession().createQuery("from Car");
+        sessionFactory.close();
         return query.getResultList();
     }
 }

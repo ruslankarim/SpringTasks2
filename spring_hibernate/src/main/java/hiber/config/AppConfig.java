@@ -2,7 +2,6 @@ package hiber.config;
 
 import hiber.model.Car;
 import hiber.model.User;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
