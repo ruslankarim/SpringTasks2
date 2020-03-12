@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CrudSpringMVCHibernate/CrudSpringMVCHibernate.iml" filepath="$PROJECT_DIR$/CrudSpringMVCHibernate/CrudSpringMVCHibernate.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SpringTasks2.iml" filepath="$PROJECT_DIR$/.idea/SpringTasks2.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring_hibernate/spring-hibernate.iml" filepath="$PROJECT_DIR$/spring_hibernate/spring-hibernate.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring_mvc/spring-mvc.iml" filepath="$PROJECT_DIR$/spring_mvc/spring-mvc.iml" />
