@@ -22,7 +22,7 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public void add(User user) {
-      Session session = sessionFactory.getCurrentSession();
+      Session session = sessionFactory.openSession();
       Transaction transaction = session.beginTransaction();
       session.save(user);
       transaction.commit();
@@ -32,7 +32,7 @@ public class UserDaoImp implements UserDao {
    @Override
    @SuppressWarnings("unchecked")
    public User getUserByCar(Long id) {
-      Session session = sessionFactory.getCurrentSession();
+      Session session = sessionFactory.openSession();
       Transaction transaction = session.beginTransaction();
       Car car = carDao.getCarById(id);
       User user = (User) session.createQuery("from User u where u.car = :car")
@@ -45,7 +45,7 @@ public class UserDaoImp implements UserDao {
    @Override
    @SuppressWarnings("unchecked")
    public List<User> listUsers() {
-      Session session = sessionFactory.getCurrentSession();
+      Session session = sessionFactory.openSession();
       Transaction transaction = session.beginTransaction();
       List<User> users = session.createQuery("from User").getResultList();
       transaction.commit();

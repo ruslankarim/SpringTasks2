@@ -18,7 +18,7 @@ public class CarDaoImp implements CarDao{
 
     @Override
     public void add(Car car) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(car);
         transaction.commit();
@@ -27,7 +27,7 @@ public class CarDaoImp implements CarDao{
 
     @Override
     public Car getCarById(Long id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Car car = session.get(Car.class, id);
         transaction.commit();
@@ -38,7 +38,7 @@ public class CarDaoImp implements CarDao{
     @Override
     @SuppressWarnings("unchecked")
     public List<Car> listCars() {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         List<Car> cars = session.createQuery("from Car").getResultList();
         transaction.commit();
