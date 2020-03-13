@@ -1,7 +1,9 @@
 package hiber.dao;
 
 import hiber.model.Car;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,19 +18,32 @@ public class CarDaoImp implements CarDao{
 
     @Override
     public void add(Car car) {
-        sessionFactory.getCurrentSession().save(car);
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(car);
+        transaction.commit();
+        session.close();
     }
 
     @Override
     public Car getCarById(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
         Car car = sessionFactory.getCurrentSession().get(Car.class, id);
+        transaction.commit();
+        session.close();
         return car;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Car> listCars() {
-        TypedQuery<Car> query=sessionFactory.getCurrentSession().createQuery("from Car");
-        return query.getResultList();
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        List<Car> cars = sessionFactory.getCurrentSession()
+                .createQuery("from Car").getResultList();
+        transaction.commit();
+        session.close();
+        return cars;
     }
 }
