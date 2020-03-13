@@ -1,4 +1,4 @@
-package ru.javamentor.karimov.web.config;
+package ru.javamentor.karimov.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

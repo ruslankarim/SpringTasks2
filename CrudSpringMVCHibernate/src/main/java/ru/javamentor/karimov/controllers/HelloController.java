@@ -1,4 +1,4 @@
-package ru.javamentor.karimov.web.controller;
+package ru.javamentor.karimov.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

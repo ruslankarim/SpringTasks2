@@ -1,4 +1,4 @@
-package ru.javamentor.karimov.web.config;
+package ru.javamentor.karimov.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages="ru.javamentor.karimov.web")
+@ComponentScan(basePackages="ru.javamentor.karimov")
 public class WebConfig implements WebMvcConfigurer {
 
     @Override

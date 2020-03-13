@@ -7,10 +7,10 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import ru.javamentor.karimov.model.User;
-
 import javax.sql.DataSource;
 import java.util.Properties;
+
+import ru.javamentor.karimov.model.User;
 
 @Configuration
 @PropertySource("classpath:db.properties")
