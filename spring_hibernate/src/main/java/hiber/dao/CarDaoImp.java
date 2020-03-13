@@ -29,7 +29,7 @@ public class CarDaoImp implements CarDao{
     public Car getCarById(Long id) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
-        Car car = sessionFactory.getCurrentSession().get(Car.class, id);
+        Car car = session.get(Car.class, id);
         transaction.commit();
         session.close();
         return car;
@@ -40,8 +40,7 @@ public class CarDaoImp implements CarDao{
     public List<Car> listCars() {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
-        List<Car> cars = sessionFactory.getCurrentSession()
-                .createQuery("from Car").getResultList();
+        List<Car> cars = session.createQuery("from Car").getResultList();
         transaction.commit();
         session.close();
         return cars;

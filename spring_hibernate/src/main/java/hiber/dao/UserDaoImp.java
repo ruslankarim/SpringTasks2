@@ -35,8 +35,7 @@ public class UserDaoImp implements UserDao {
       Session session = sessionFactory.getCurrentSession();
       Transaction transaction = session.beginTransaction();
       Car car = carDao.getCarById(id);
-      User user = (User) sessionFactory.getCurrentSession()
-              .createQuery("from User u where u.car = :car")
+      User user = (User) session.createQuery("from User u where u.car = :car")
               .setParameter("car", car).list().get(0);
       transaction.commit();
       session.close();
@@ -48,8 +47,7 @@ public class UserDaoImp implements UserDao {
    public List<User> listUsers() {
       Session session = sessionFactory.getCurrentSession();
       Transaction transaction = session.beginTransaction();
-      List<User> users = sessionFactory.getCurrentSession()
-              .createQuery("from User").getResultList();
+      List<User> users = session.createQuery("from User").getResultList();
       transaction.commit();
       session.close();
       return users;
