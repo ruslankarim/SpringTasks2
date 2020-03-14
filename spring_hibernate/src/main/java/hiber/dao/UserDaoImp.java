@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -31,12 +30,13 @@ public class UserDaoImp implements UserDao {
 
    @Override
    @SuppressWarnings("unchecked")
-   public User getUserByCar(Long id) {
+   public User getUserByCar(Long id,  int series) {
       Session session = sessionFactory.openSession();
       Transaction transaction = session.beginTransaction();
-      Car car = carDao.getCarById(id);
-      User user = (User) session.createQuery("from User u where u.car = :car")
-              .setParameter("car", car).list().get(0);
+      User user = (User) session
+              .createQuery("from User u where u.car.id = :car_id and u.car.series = :car_series")
+              .setParameter("car_id", id)
+              .setParameter("car_series", series).list().get(0);
       transaction.commit();
       session.close();
       return user;

@@ -18,9 +18,7 @@ public class UserListController {
 
     @RequestMapping(value = "/userlist", method = RequestMethod.GET)
     public String handler(ModelMap model){
-        userService.insertUser(new User("123", "qwe"));
         List<User> users = userService.getAllUsers();
-        System.out.println(users.get(0));
         model.addAttribute("users", users);
         return "userlist";
     }

@@ -2,6 +2,7 @@ package ru.javamentor.karimov.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.javamentor.karimov.model.User;
@@ -16,35 +17,50 @@ public class UserDAOImp implements UserDAO {
     @Override
     public List<User> getAllUsers() {
         Session session = sessionFactory.openSession();
-        List<User> query=sessionFactory.getCurrentSession().createQuery("from User", User.class).list();
-        return query;
+        Transaction transaction = session.beginTransaction();
+        List<User> users = session.createQuery("from User", User.class).list();
+        transaction.commit();
+        session.close();
+        return users;
     }
 
     @Override
     public void insertUser(User user) {
-        sessionFactory.getCurrentSession().save(user);
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(user);
+        transaction.commit();
+        session.close();
     }
 
     @Override
     public void updateUser(User user) {
-        User userEntity = sessionFactory.getCurrentSession().get(User.class, user.getId());
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        User userEntity = session.get(User.class, user.getId());
         userEntity.setName(user.getName());
         userEntity.setAddress(user.getAddress());
-        sessionFactory.close();
+        transaction.commit();
+        session.close();
     }
 
     @Override
     public User getUserByID(Long id) {
-        User user = sessionFactory.getCurrentSession().get(User.class, id);
-        sessionFactory.close();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        User user = session.get(User.class, id);
+        transaction.commit();
+        session.close();
         return user;
     }
 
     @Override
     public void deleteUser(Long id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         User user = session.get(User.class, id);
         session.delete(user);
+        transaction.commit();
         session.close();
     }
 }

@@ -19,8 +19,8 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   @OneToOne
-   @JoinColumn
+   @OneToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+   @JoinColumn(name="car_id")
    private Car car;
 
    public User() {}
