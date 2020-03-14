@@ -16,9 +16,6 @@ public class UserDaoImp implements UserDao {
    @Autowired
    private SessionFactory sessionFactory;
 
-   @Autowired
-   private CarDao carDao;
-
    @Override
    public void add(User user) {
       Session session = sessionFactory.openSession();
