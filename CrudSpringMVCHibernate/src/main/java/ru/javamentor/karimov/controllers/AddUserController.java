@@ -13,27 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
-public class EditUserController {
-
+public class AddUserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/new", method = RequestMethod.GET)
     public String handlerUserForm(Model model, HttpServletRequest request, HttpServletResponse response){
-        long id = Long.parseLong(request.getParameter("id"));
-        User user = userService.getUserByID(id);
-        System.out.println(user);
-        model.addAttribute("user", user);
         return "userform";
     }
 
-    @RequestMapping(value = "/admin/update", method = RequestMethod.POST)
-    public String handlerUserUpdate(Model model, HttpServletRequest request, HttpServletResponse response){
-        long id = Long.parseLong(request.getParameter("id"));
+    @RequestMapping(value = "/admin/insert", method = RequestMethod.POST)
+    public String handlerAddUser(Model model, HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("name");
         String address = request.getParameter("address");
-        User user = new User(id, name, address);
-        userService.updateUser(user);
+        User user = new User(name, address);
+        userService.insertUser(user);
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "userlist";

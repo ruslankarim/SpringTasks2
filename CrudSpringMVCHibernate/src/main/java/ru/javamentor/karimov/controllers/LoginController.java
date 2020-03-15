@@ -14,12 +14,12 @@ import java.io.IOException;
 public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void handleLogin(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+    public void handleLogin(HttpServletResponse response)
             throws IOException {
         /*
         *  Логика проверки логина и пароля
         * */
 
-        response.sendRedirect("userlist");
+        response.sendRedirect("admin/userlist");
     }
 }
